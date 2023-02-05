@@ -14,7 +14,6 @@ void buscar(Nodo *, int);
 void eliminar(Nodo *&,int);
 
 int main(){
-
     Nodo *lista=NULL;
     insertar(lista,10);
     insertar(lista,5);   

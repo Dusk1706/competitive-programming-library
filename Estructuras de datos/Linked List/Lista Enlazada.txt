@@ -3,3 +3,4 @@ donde el orden de los mismos se establece mediante punteros
 Un nodo se divide en 2 partes:
 -Informacion: Contiene la informacion del elemento
 -Enlace: Contiene la direccion del siguiente Nodo de la lista
+

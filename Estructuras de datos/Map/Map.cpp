@@ -28,6 +28,11 @@ int main(){
         cout << "La clave " << clave << " tiene el valor " << valor << endl;
     }
 
+    //Tambien se puede usar un for each
+    for(const auto&kv : ciudades){
+        cout<<"Clave "<<kv.first<<" tiene el valor "<<kv.second<<endl;
+    }
+
     
 
 
