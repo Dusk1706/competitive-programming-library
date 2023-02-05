@@ -19,10 +19,6 @@ struct fenwick {
 		}
 	}
 
-	// void add(int x, int y) {
-	// 	for (x++; x < n; x += (x & (-x))) fn[x] += y;
-	// }
-
 	int sum(int x) {
 		x++; // 1 based index
 		int ans = 0;
