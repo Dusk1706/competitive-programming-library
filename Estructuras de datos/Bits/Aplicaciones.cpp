@@ -2,11 +2,6 @@
 
 using namespace std;
 
-//Devuelve verdadero si es impar
-bool esImpar(int n){
-    return n&1;
-}
-
 //Obtiene el bit en cierto indice base 0 para base 1 poner i-1
 int getBit(int n, int i){
     return (n & (1 << i))>0?1:0;
@@ -40,7 +35,6 @@ void clearBitRange(int &n,int i,int j){
 
 int main(){
     int n=5;
-    cout<<esImpar(n)<<endl;
     cout<<getBit(n,2)<<endl;
     clearBit(n,2);
     cout<<getBit(n,2)<<endl;
