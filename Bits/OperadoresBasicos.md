@@ -2,16 +2,16 @@
 
 ## Operadores logicos bit a bit
 ### Binario AND & Enciende los bits que tengan en comun comparando dos numeros
-    Ejemplos:
-    0 & 0 = 0
-    1 & 0 = 0
-    0 & 1 = 0
-    1 & 1 = 1
-    
-    5 = 00000101
-    7 = 00000111
-    & -------------
-        00000101 = 5
+        Ejemplos:
+        0 & 0 = 0
+        1 & 0 = 0
+        0 & 1 = 0
+        1 & 1 = 1
+
+        5 = 00000101
+        7 = 00000111
+        & -------------
+            00000101 = 5
 
 ### Binario OR | Enciende los bits encendidos
         0 & 0 = 0
