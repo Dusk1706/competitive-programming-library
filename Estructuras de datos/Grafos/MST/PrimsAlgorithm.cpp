@@ -46,8 +46,7 @@ int main()
     int V, E;
     cin>>V>>E;
     AL.assign(V+1, vii());
-    for (int i = 0; i < E; ++i)
-    {
+    for (int i = 0; i < E; ++i){
         int u, v, w;
         cin>>u>>v>>w;
         AL[u].push_back({v,w});

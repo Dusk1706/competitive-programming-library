@@ -132,9 +132,9 @@ int main()
 
 	cout << tree.query(0, 4) << '\n';
 
-	tree.update(0, 1, 10);
+	tree.update(0, 0, 10);
 
-	cout << tree.query(0, 4) << '\n';
+	cout << tree.query(0, 0) << '\n';
 
 	return 0;
 }
