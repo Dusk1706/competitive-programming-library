@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+//Pura gente del coach moy
 using namespace std;
 #define ENDL '\n'
 #define f first
