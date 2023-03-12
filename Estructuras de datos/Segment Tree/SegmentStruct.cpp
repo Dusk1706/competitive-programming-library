@@ -18,7 +18,6 @@ struct segmenttree {
 			st[node] = v[start];
 			return;
 		}
-
 		int mid = (start + ending) / 2;
 
 		// left subtree is (start,mid)
