@@ -12,7 +12,9 @@ Un multiconjunto es un conjunto donde un elemento puede aparecer más de una vez
 
 ## Permutaciones con repetición
 Son las posibles ordenaciones de los elementos de un multiconjunto.
+
 ![](https://github.com/Dusk1706/Estructuras-de-datos-y-Algoritmos/blob/main/Imagenes/PermutacionesConRepeticion.png)
+
 La fórmula básicamente explica que la cantidad de permutaciones con repetición es igual a la cantidad de datos en el multiconjunto factorial entre el producto de las factoriales de la cantidad que se repite cada elemento del multiconjunto.
 
 ## Variaciones con repetición
