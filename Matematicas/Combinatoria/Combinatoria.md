@@ -20,11 +20,14 @@ La fórmula básicamente explica que la cantidad de permutaciones con repetició
 ## Variaciones con repetición
 Son posibles muestras ordenadas de r elementos, no necesariamente distintos, que se pueden extraer de un conjunto de n elementos. Cuando se trabaja con variaciones con repetición, normalmente se habla de que existe una cantidad infinita de repeticiones de los elementos
 ![](https://github.com/Dusk1706/Estructuras-de-datos-y-Algoritmos/blob/main/Imagenes/VariacionesConRepeticion.png)
+
 La fórmula dice que la cantidad de variaciones con repetición es igual a la cantidad de elementos del multiconjunto elevado a la cantidad de elementos de la muestra.
 
 ## Combinaciones con repetición
 Son posibles muestras no ordenadas de r elementos, no necesariamente distintos, que se pueden extraer de un conjunto de n elementos. Cuando se trabaja con combinaciones con repetición, normalmente se habla de que existe una cantidad infinita de repeticiones de los elementos.
+
 ![](https://github.com/Dusk1706/Estructuras-de-datos-y-Algoritmos/blob/main/Imagenes/CombinacionesConRepeticion.png)
+
 La fórmula para sacar la cantidad de las combinaciones repetidas es la misma que de la combinatoria normal, con la diferencia de que, en vez de n, utilizaremos n + r – 1.
 
 
