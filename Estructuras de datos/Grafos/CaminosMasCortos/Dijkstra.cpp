@@ -4,8 +4,8 @@ using namespace std;
 #define P_ii pair<int,int>
 #define INF 1<<28
 
-vector<int> dijkstra(vector<P_ii> adj[], int begin, int n){
-    priority_queue<P_ii, vector<P_ii>, greater<P_ii> > pq;
+vector<int> dijkstra(vector<ii> adj[], int begin, int n){
+    priority_queue<ii, vector<ii>, greater<ii> > pq;
     vector<int> dist(n+1,INF);
     dist[begin]=0;
     pq.push({0,begin});
