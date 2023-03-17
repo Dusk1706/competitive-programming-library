@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+//Pura gente del coach moy
 using namespace std;
 #define ENDL '\n'
 #define f first
@@ -15,6 +16,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int,int> ii;
 typedef vector<int> vi;
+typedef vector<ii> vii;
 ll n, m, q, k, l, r, x, y, z, ans=0;
 
 int main(){ _
