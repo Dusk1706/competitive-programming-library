@@ -16,6 +16,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int,int> ii;
 typedef vector<int> vi;
+typedef vector<ii> vii;
 
 const ll MOD = 1e9+7, INF=1e18;
 ll gcd(ll a, ll b){return (b?gcd(b,a%b):a);}
