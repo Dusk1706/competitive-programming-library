@@ -3,6 +3,7 @@ using namespace std;
 
 const double INF = 1e9;
 const double EPS = 1e-9;
+const double PI=acos(-1.0);
 
 double DEG_to_RAD(double d) { return d*M_PI/180.0; }
 double RAD_to_DEG(double r) { return r*180.0/M_PI; }
@@ -35,16 +36,16 @@ double dist(point p1, point p2) {                // Euclidean distance
   return hypot(p1.x-p2.x, p1.y-p2.y);            // return double
 }
 
-// rotate p by theta degrees CCW w.r.t origin (0, 0)
+// Rotar p por theta grados en contra de las manecillas alrededor del origen (0, 0)
 point rotate(point p, double theta) {
-  double rad = DEG_to_RAD(theta);                // convert to radian
+  double rad = DEG_to_RAD(theta);                // Convertir a radian
   return point(p.x*cos(rad) - p.y*sin(rad),
                p.x*sin(rad) + p.y*cos(rad));
 }
 
 struct line { double a, b, c; };                 // most versatile
 
-// the answer is stored in the third parameter (pass by reference)
+// Convierte 2 puntos en una linea pasada por referencia
 void pointsToLine(point p1, point p2, line &l) {
   if (fabs(p1.x-p2.x) < EPS)                     // vertical line is fine
     l = {1.0, 0.0, -p1.x};                       // default values
@@ -175,7 +176,7 @@ double distToLineSegment(point p, point a, point b, point &c) {
   return distToLine(p, a, b, c);                 // use distToLine
 }
 
-// returns the cross product of two vectors a and b
+// Producto cruz de 2 vectores a y b of
 double cross(vec a, vec b) { return a.x*b.y - a.y*b.x; }
 
 //// another variant
