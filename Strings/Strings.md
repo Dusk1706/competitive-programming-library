@@ -65,5 +65,131 @@ Mayúsculas como iguales*/
    }
 }
 
+### replaceAll( String regex, String replacement )
+Este método reemplaza todas las coincidencias regex de una cadena por por la cadena indicada como replacement.
+Ejemplos : 
+El primer ejemplo cambia las coincidencias java por scala
+String str = "how to do in java !! a java blog !!";
+Assertions.assertEquals("how to do in scala !! a scala blog !!", str.replaceAll("java", "scala"));
+		En este caso quitamos los espacios
+		String blog = "how to do in java";
+Assertions.assertEquals("howtodoinjava",
+blog.replaceAll("\\s", ""));
+En este caso añadimos un espacio entre cada caracter
+String str = "JavaTpoint";
+System.out.printf(str.replaceAll(“”, “ ”));
+
+## Formato de salida 
+Normalmente son problemas de calentamiento o para gastar tiempo. Para este tipo de problemas es recomendable practicar tus capacidades de programación, resolviendo este tipo de problemas lo más rápido posible, para tener una menor penalización de tiempo, fuera de ello para resolver el problema sólo has lo que se pide no hay mucha ciencia.
+
+## Comparacion de cadenas
+Estos problemas, se deben comparar cadenas según varios criterios. Esta es similar a la de los problemas de coincidencia de cadenas (Se definirá más adelante este tipo de problemas), para resolver este tipo de problemas regularmente se utilizarán funciones relacionadas con el strcmp en C / C++, el compare de C++ o el compareTo de Java.
+
+### strcmp de C / C++
+#include <cstring>
+int main() {
+    char str1[] = "hola", str2[] = "adios";
+    int resultado = strcmp(str1, str2);
+    if (resultado < 0) {
+        cout << "str1 es menor que str2" << std::endl;
+    } else if (resultado > 0) {
+        cout << "str1 es mayor que str2" << std::endl;
+    } else {
+        cout << "str1 es igual a str2" << std::endl;
+    }
+    return 0;
+}
+
+### compare de C++
+#include <string>
+int main() {
+    string str1 = "hello";
+    string str2 = "world";
+    int result = str1.compare(str2);
+    if (result == 0) {
+        cout << "Las cadenas son iguales" << endl;
+    } else if (result < 0) {
+        cout << "La primera cadena es menor que la segunda" << endl;
+    } else {
+        cout << "La primera cadena es mayor que la segunda" << endl;
+    }
+    return 0;
+}
+
+### compareTo de Java : 
+String str1 = "hola";
+String str2 = "adiós";
+int resultado = str1.compareTo(str2);
+if (resultado < 0) {
+    System.out.println("str1 es menor que str2");
+} else if (resultado > 0) {
+    System.out.println("str1 es mayor que str2");
+} else {
+    System.out.println("str1 es igual a str2");
+}
+
+## Coincidencia de cadenas
+La coincidencia de cadenas (También llamada búsqueda), consiste encontrar el índice, o índices, de una (sub) Cadena (llamada texto T).
+Por ejemplo, aunamos que tenemos T = ‘STEVEN EVENT’. Si P = ‘EVE’, la respuesta serán los índices 2 y 7 (contando desde 0). Si P = ‘EVENT’, la respuesta será 7. Si P = ‘EVENING’, no habrá respuesta (no se encontrará ninguna coincidencia y devolveremos -1 o NULL).
+
+### Soluciones con bibliotecas
+Para problemas en que las cadenas son cortas:
+#include <bits/stdc++.h>
+using namespace std;
+int main (){
+  string T = "STEVEN EVENT";
+  string P = "EVE";
+
+
+  auto found = T.find(P); // Se busca la primera coincidencia de P en T
+  cout << found << endl; // found = 2
+  found = T.find(P, found + 1); //Buscamos a partir de una posición dada.
+  cout << found << endl; 
+  found = T.find("EVENTI"); //En este caso no se encontrara
+  if(found == string::npos){ //Comprobamos si se encontró la cadena
+  	cout << "NULL" << endl;
+  }
+  else
+  	cout << found << endl;
+  return 0;
+}
+
+## Algoritmo de Knuth-Morris-Pratt (KMP)
+Con el algoritmo de KMP podemos encontrar todas las apariciones de la subcadena P (Con longitud m) en una cadena (larga) T (de longitud n), si hay alguna aparición de P.
+El algoritmo KMP lo dividimos en 2 partes, la primera el Preprocesar la cadena P, para crear una ‘tabla de reinicios’, en base a los patrones que vayamos encontrando por la cadena P.
+Para el cálculo de la tabla de reinicios, buscamos patrones para tratar de reiniciar de una mejor posición que la inicial. Comenzamos poniendo la primera posición como -1 (Por que no hay ningún patrón antes). En el caso de que no haya patrón el valor en la tabla de reinicio será cero, si hay patrón, el valor de la tabla de reinicio será igual al valor de la posición de reinicio en la que comenzaremos en caso de un fallo.
+La segunda parte consiste en buscar las coincidencias de P en T, utilizando un proceso similar al que utilizamos anteriormente para preprocesar P. En este caso avanzaremos los punteros de las cadenas mientras coincidan, y en el caso del fallo simplemente el puntero de nuestra cadena P se reinicia a la posición almacenada en la tabla de reinicios. Para saber si P ya se encontró el puntero deberá ser igual al largo de la cadena, en este caso la posición de la coincidencia es i - j (Siendo i el puntero de T y j el puntero de P), para continuar buscando la próxima coincidencia reiniciamos j (De acuerdo a nuestra tabla de reinicios).
+La complejidad de este algoritmo es O(n + m)
+
+### Implementación siguiente página.
+#include <bits/stdc++.h>
+#define MAX 100010
+using namespace std;
+string T, P;
+int b[MAX], n, m; 
+// b = tabla de reinicios // n = long. de T // m = long. de P 
+void kmpPreprocess(){ // Llamar antes de kmpSearch()
+    int i = 0, j = -1; b[0] = -1;  // Valores Iniciales
+    while(i < m){ //Proceso previo de cadena patrón P
+        while(j >= 0 && P[i] != P[j]) j = b[j]; //Diferente, reiniciar j
+        i++; j++; // Si es igual avanzamos ambos punteros
+        b[i] = j;
+    }
+}
+void kmpSearch(){ //Similar a kmpPreprocess(), pero sobre T
+    int i = 0, j = 0;   //Valores iniciales
+    while(i < n){ //Buscar en la cadena T
+        while(j >= 0 && T[i] != P[j]) j = b[j]; //Diferente, reiniciar j
+        i++; j++; //Si es igual avanzamos ambos punteros
+        if(j == m){
+            cout << "P se encontró en el index " << i - j << "\n";
+            j = b[j]; //Preparar j para la siguiente coincidencia
+        }
+    }
+}
+
+
+
+
 
 
