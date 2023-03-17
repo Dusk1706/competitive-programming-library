@@ -18,16 +18,12 @@ typedef pair<int,int> ii;
 typedef vector<int> vi;
 typedef vector<ii> vii;
 
-const ll MOD = 1e9+7, INF=1e18;
+const ll MOD = 1e9+7, INF=1e18, template_array_size = 1e6;
 ll gcd(ll a, ll b){return (b?gcd(b,a%b):a);}
 ll lcm(ll a, ll b){ if(!a || !b) return 0; return a * b / gcd(a, b); }
-const ll template_array_size = 1e6;
-ll a[template_array_size];
-ll b[template_array_size];
 string s, t;
-ll n, m, q, k, l, r, x, y, z;
- 
-ll ans = 0;
+ll a[template_array_size], b[template_array_size];
+ll n, m, q, k, l, r, x, y, z, ans=0;
 
 void solve(int tc=0){
     ans=0;

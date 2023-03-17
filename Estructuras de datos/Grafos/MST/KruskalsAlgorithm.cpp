@@ -70,5 +70,6 @@ int main() {
         if (num_taken == V-1) break;
     }
     cout<<mst_cost<<" "<<num_taken;
+    
   return 0;
 }

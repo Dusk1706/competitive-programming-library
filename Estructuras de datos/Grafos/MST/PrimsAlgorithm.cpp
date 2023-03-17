@@ -33,8 +33,7 @@ void process(int u){
 void prim(vector<vii> AL,int src,int V){
     taken.assign(V+1, 0);
     process(src);
-    while (!pq.empty())
-    {
+    while (!pq.empty()){
         auto [w, u] = pq.top();
         pq.pop();
         if (taken[u])
