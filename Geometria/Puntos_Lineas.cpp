@@ -12,10 +12,10 @@ struct P {
   int x, y;                                      
   P() { x = y = 0; }                        
   P(int _x, int _y) : x(_x), y(_y) {}
-  bool operator==(P p){return x==p.x && y==p.y;}  
-  P operator+(P p){return P(x+p.x,y+p.y);}
-  P operator-(P p){return P(x-p.x,y-p.y);}
-  P operator*(int t){return P(x*t,y*t);}
+  bool operator==(const P &p){return x==p.x && y==p.y;}  
+  P operator+(const P &p)const{return P(x+p.x,y+p.y);}
+  P operator-(const P &p)const{return P(x-p.x,y-p.y);}
+  long long operator*(P p)const{return x*p.y-y*p.x;}
 };
 
 struct pt {// for 3D add z coordinate

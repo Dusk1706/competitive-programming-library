@@ -10,3 +10,9 @@ donde EPS es un número pequeño como 1e-9 (es decir, 10⁹ o 0.000000001) en lu
 - Utilizar el tipo de datos double por defecto en lugar del tipo de float.
 - Aplazar las operaciónes de punto flotante lo más tarde posible para reducir el efecto de errores acumulativos.
 - Reducir la cantidad de operaciones de punto flotante tanto como sea posible, por ejemplo, en lugar de calcular a/b/c (dos divisiones de punto flotante), calculamos a/(b * c) (sólo una división de punto flotante).
+
+### Producto Cruz
+El producto cruz nos da el doble del area de un triangulo formado por dos puntos y tambien permite determinar la posición relativa de un punto respecto a una línea 
+Formula: X1*Y2 - X2*Y1
+Si el producto cruz da negativo quiere decir que el primer punto esta de lado izquierdo, si da positivo
+esta de lado derecho y si es cero esta en la misma linea
