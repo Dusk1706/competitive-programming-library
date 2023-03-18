@@ -13,6 +13,8 @@ donde EPS es un número pequeño como 1e-9 (es decir, 10⁹ o 0.000000001) en lu
 
 ### Producto Cruz
 El producto cruz nos da el doble del area de un triangulo formado por dos puntos y tambien permite determinar la posición relativa de un punto respecto a una línea 
+
 Formula: X1*Y2 - X2*Y1
+
 Si el producto cruz da negativo quiere decir que el primer punto esta de lado izquierdo, si da positivo
 esta de lado derecho y si es cero esta en la misma linea
