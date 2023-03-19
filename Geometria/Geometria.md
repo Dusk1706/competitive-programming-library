@@ -3,7 +3,7 @@
 ## Formulas
 Pendiente: m = (Y2-Y1)/(X2-X1)
 
-## Punto
+## Puntos
 Tratamos de evitar operaciones de punto flotante (es decir, divisiones, raíces cuadradas y cualquier otra operación que pueda producir errores numéricos) y trabajar con enteros precisos siempre que sea posible (es decir, sumas, restas y multiplicaciones).
 
 Si necesitamos trabajar con puntos flotantes
@@ -26,3 +26,7 @@ Dados los Puntos (A, B, C)
 
 Si el producto cruz da positivo quiere decir que el punto C esta de lado izquierdo desde A hacia B, si da negativo esta de lado derecho y si es cero esta en la misma linea osea son colineales
 ![](https://github.com/Dusk1706/Estructuras-de-datos-y-Algoritmos/blob/main/Imagenes/OrientacionProductoCruz.png)
+
+## Lineas
+Las líneas son un conjunto de puntos (x, y) en el plano que cumplen una ecuación de la forma
+ax + by = c, donde al menos uno de los valores de a y b es distinto de cero. Los valores de a y b determinan la dirección de la línea, mientras que c determina su posición.
