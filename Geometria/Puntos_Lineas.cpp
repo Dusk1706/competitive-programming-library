@@ -43,7 +43,7 @@ struct pt {// for 3D add z coordinate
 
 };
 
-double dist(pt p1, pt p2) {                // Euclidean distance
+double dist(const pt &p1, const pt &p2) {                // Euclidean distance
   // hypot(dx, dy) returns sqrt(dx*dx + dy*dy)
   return hypot(p1.x-p2.x, p1.y-p2.y);            // return double
 }
@@ -55,6 +55,8 @@ pt rotate(pt p, double theta) {
                p.x*sin(rad) + p.y*cos(rad));
 }
 
+//Coeficientes ax + by + c = 0
+//B=0 Linea vertical B=1 Linea No vertical
 struct line { double a, b, c; };                 // most versatile
 
 // Convierte 2 puntos en una linea pasada por referencia

@@ -22,11 +22,23 @@ El producto cruz nos da el doble del area de un triangulo formado por dos puntos
 
 Formula: (X1)(Y2) - (X2)(Y1)
 
-Dados los Puntos (A, B, C)
+Dados los Puntos (A, B, C) restamos las coordenadas de A a los puntos B y C para conocer la
+posicion relativa y de la linea en el plano luego hacemos producto cruz (B X C)
 
 Si el producto cruz da positivo quiere decir que el punto C esta de lado izquierdo desde A hacia B, si da negativo esta de lado derecho y si es cero esta en la misma linea osea son colineales
 ![](https://github.com/Dusk1706/Estructuras-de-datos-y-Algoritmos/blob/main/Imagenes/OrientacionProductoCruz.png)
 
 ## Lineas
 Las líneas son un conjunto de puntos (x, y) en el plano que cumplen una ecuación de la forma
-ax + by = c, donde al menos uno de los valores de a y b es distinto de cero. Los valores de a y b determinan la dirección de la línea, mientras que c determina su posición.
+ax + by + c = 0, donde al menos uno de los valores de a y b es distinto de cero. Los valores de a y b determinan la dirección de la línea, mientras que c determina su posición.
+
+
+### Segmento de linea
+Es una línea con dos puntos finales que tiene una longitud finita.
+
+## Vector
+Es un segmento de línea (por lo tanto, tiene dos puntos finales y longitud/magnitud) con una dirección.
+
+## Circulo
+Un círculo centrado en las coordenadas (a, b) con radio r es el conjunto de todos los puntos 
+(x, y) tal que (x - a)² + (y - b)² = r².
