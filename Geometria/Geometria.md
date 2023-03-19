@@ -18,9 +18,11 @@ donde EPS es un número pequeño como 1e-9 (es decir, 10⁹ o 0.000000001) en lu
 Pendiente a partir de un punto positivo: m = Y/X 
 
 ### Producto Cruz
-El producto cruz nos da el doble del area de un triangulo formado por dos puntos y tambien permite determinar la posición relativa de un punto respecto a una línea 
+El producto cruz nos da el doble del area de un triangulo formado por dos puntos y tambien permite determinar la orientacion relativa de un punto respecto a una línea 
 
 Formula: (X1)(Y2) - (X2)(Y1)
 
-Si el producto cruz da negativo quiere decir que el primer punto esta de lado izquierdo, si da positivo
-esta de lado derecho y si es cero esta en la misma linea
+Dados los Puntos (A, B, C)
+
+Si el producto cruz da positivo quiere decir que el punto C esta de lado izquierdo desde A hacia B, si da negativo esta de lado derecho y si es cero esta en la misma linea osea son colineales
+![](https://github.com/Dusk1706/Estructuras-de-datos-y-Algoritmos/blob/main/Imagenes/OrientacionProductoCruz.png)
