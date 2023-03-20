@@ -32,6 +32,9 @@ Si el producto cruz da positivo quiere decir que el punto C esta de lado izquier
 Las líneas son un conjunto de puntos (x, y) en el plano que cumplen una ecuación de la forma
 ax + by + c = 0, donde al menos uno de los valores de a y b es distinto de cero. Los valores de a y b determinan la dirección de la línea, mientras que c determina su posición.
 
+### Interseccion de 2 segmentos de linea
+Interseccion: Es el punto donde ambos segmentos se cruzan o se encuentran.
+Consideraciones para 
 
 ### Segmento de linea
 Es una línea con dos puntos finales que tiene una longitud finita.
