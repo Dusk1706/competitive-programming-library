@@ -51,7 +51,6 @@ ll backtracking(int espaciosI,int espaciosD, int ficha,ll restante){
 
 void solve(int tc=0){
     cin >> n >> k >> e;  
-    
     int izq=e, der=n-k-e;
     tiles[k] = true;
     cout << backtracking(izq,der,max(izq,der),izq+der)<<ENDL;
