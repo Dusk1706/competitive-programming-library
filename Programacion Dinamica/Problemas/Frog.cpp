@@ -1,3 +1,5 @@
+// https://atcoder.jp/contests/dp/tasks/dp_a
+
 #include <bits/stdc++.h>
 //Pura gente del coach moy
 using namespace std;
@@ -13,14 +15,31 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int,int> ii;
-typedef vector<int> vi;
+typedef vector<ll> vi;
 typedef vector<ii> vii;
-const ll MOD = 1e9+7, INF=1e18, template_array_size = 1e6;
+const ll MOD = 1e9+7, INF=1e6, template_array_size = 1e6;
 ll n, m, q, k, l, r, x, y, z, ans=0;
-string s,t;
+
+ll dp[100001];
 
 int main(){ _
-    
+
+    cin>>n;
+    ll h[n+1];
+    FORE(i,1,n){
+        cin>>h[i];
+    }
+    memset(dp,INF,sizeof dp);
+    dp[1]=0;
+    FORE(i,1,n){
+        if(i+1<=n){
+            dp[i+1]= min(dp[i+1], dp[i] + abs(h[i]-h[i+1]));
+        }
+        if(i+2<=n){
+            dp[i+2]= min(dp[i+2], dp[i] + abs(h[i]-h[i+2]));
+        }
+    }
+    cout<<dp[n]<<ENDL;
 
 
   return 0;

@@ -1,9 +1,8 @@
+//https://github.com/nskybytskyi/Codeforces/blob/main/DynamicProgrammingC/statements.pdf
 #include <bits/stdc++.h>
 //Pura gente del coach moy
 using namespace std;
 #define ENDL '\n'
-#define f first
-#define s second
 #define all(s) begin(s), end(s)
 #define rall(n) n.rbegin(), n.rend()
 #define FOR(x, b) for(int x = 0; x <b; x++)
@@ -17,27 +16,30 @@ typedef unsigned long long ull;
 typedef pair<int,int> ii;
 typedef vector<int> vi;
 typedef vector<ii> vii;
-
-const ll MOD = 1e9+7, INF=1e18, template_array_size = 1e6;
-ll gcd(ll a, ll b){return (b?gcd(b,a%b):a);}
-ll lcm(ll a, ll b){ if(!a || !b) return 0; return a * b / gcd(a, b); }
-string s, t;
-ll a[template_array_size], b[template_array_size];
 ll n, m, q, k, l, r, x, y, z, ans=0;
-
-void solve(int tc=0){
-    ans=0;
-
-
-    
-    cout<<ans<<ENDL;
-}
-
-int main(){_
-    int tc=1;
-    // cin>>tc;
-    for(int t=0;t<tc;t++){
-        solve(t);
+const ll MOD = 1e9+7, INF=1e6, template_array_size = 1e6;
+ 
+ll dp[101];
+int main(){ _
+    freopen("ladder.in","r",stdin);
+    freopen("ladder.out","w",stdout);
+    cin>>n;
+    ll ladder[n+1];
+    FORE(i,1,n){
+        cin>>ladder[i];
     }
-    return 0;
+    FORE(i,1,n){
+        dp[i]=-INF;
+    }
+
+    FORE(i,0,n){
+        if(i+1<=n){
+            dp[i+1]=max(dp[i+1],dp[i]+ladder[i+1]);
+        }
+        if(i+2<=n){
+            dp[i+2]=max(dp[i+2],dp[i]+ladder[i+2]);
+        }
+    }
+    cout<<dp[n]<<ENDL;
+  return 0;
 }

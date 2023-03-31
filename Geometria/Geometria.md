@@ -28,6 +28,12 @@ posicion relativa y de la linea en el plano luego hacemos producto cruz (B X C)
 Si el producto cruz da positivo quiere decir que el punto C esta de lado izquierdo desde A hacia B, si da negativo esta de lado derecho y si es cero esta en la misma linea osea son colineales
 ![](https://github.com/Dusk1706/Estructuras-de-datos-y-Algoritmos/blob/main/Imagenes/OrientacionProductoCruz.png)
 
+### Sweep Line 
+Muchos problemas geometricos pueden ser resueltos usando la tecnica Sweep Line. La idea
+al usar esta tecnica es representar una instancia del problema como un conjunto de eventos
+que corresponden a puntos en el plano.
+Los eventos son procesados en orden ascendiente de acuerdo a las coordenadas X o Y.
+
 ## Lineas
 Las líneas son un conjunto de puntos (x, y) en el plano que cumplen una ecuación de la forma
 ax + by + c = 0, donde al menos uno de los valores de a y b es distinto de cero. Los valores de a y b determinan la dirección de la línea, mientras que c determina su posición.

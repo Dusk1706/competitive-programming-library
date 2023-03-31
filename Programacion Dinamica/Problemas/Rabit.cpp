@@ -19,9 +19,36 @@ const ll MOD = 1e9+7, INF=1e18, template_array_size = 1e6;
 ll n, m, q, k, l, r, x, y, z, ans=0;
 string s,t;
 
+int dp[1001];
 int main(){ _
-    
+    freopen("lepus.in","r",stdin);
+    freopen("lepus.out","w",stdout);
+    memset(dp,-1,sizeof dp);
 
+    string s;
+    cin >> n >> s;
 
-  return 0;
+    const char pantano = 'w';
+    const char vacio = '.';
+    const char grass = '"';
+    dp[0]=0;
+    for (int i = 1; i < n; ++i) {
+      if (s[i] != pantano) {
+        const int punto = s[i] == grass;
+        if (dp[i - 1] != -1) {
+            dp[i] = max(dp[i], dp[i - 1] + punto);
+        }
+        if (3 <= i && dp[i - 3] != -1) {
+            dp[i] = max(dp[i], dp[i - 3] + punto);
+        }
+        if (5 <= i && dp[i - 5] != -1) {
+          dp[i] = max(dp[i], dp[i - 5] + punto);
+        }
+
+      }
+    }
+
+    cout << dp[n - 1];
+
+    return 0;
 }

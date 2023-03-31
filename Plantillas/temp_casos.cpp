@@ -15,13 +15,27 @@ typedef unsigned long long ull;
 typedef pair<int,int> ii;
 typedef vector<int> vi;
 typedef vector<ii> vii;
+
 const ll MOD = 1e9+7, INF=1e18, template_array_size = 1e6;
+ll gcd(ll a, ll b){return (b?gcd(b,a%b):a);}
+ll lcm(ll a, ll b){ if(!a || !b) return 0; return a * b / gcd(a, b); }
+string s, t;
+ll a[template_array_size], b[template_array_size];
 ll n, m, q, k, l, r, x, y, z, ans=0;
-string s,t;
 
-int main(){ _
+void solve(int tc=0){
+    ans=0;
+
+
     
+    cout<<ans<<ENDL;
+}
 
-
-  return 0;
+int main(){_
+    int tc=1;
+    // cin>>tc;
+    for(int t=0;t<tc;t++){
+        solve(t);
+    }
+    return 0;
 }
