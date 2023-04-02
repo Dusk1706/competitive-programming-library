@@ -52,7 +52,7 @@ Algunas formulas que involucran el area de dos o mas rectangulos basados en sus 
 X y Y o determinar si los rectangulos intersectan
 
 ### Area de un rectangulo
-Formula del area de un solo rectangulo largo por ancho
+Formula del area de un solo rectangulo
 
 Largo es la longitud de los lados verticales y el ancho la longitud de los lados horizontales
 
@@ -81,7 +81,6 @@ En todos los demas casos los rectangulos se intersectan
 
 Implementacion
 ```
-// Tambien 
 bool intersect(vector<int> s1, vector<int> s2) {
 	int bl_a_x = s1[0], bl_a_y = s1[1], tr_a_x = s1[2], tr_a_y = s1[3];
 	int bl_b_x = s2[0], bl_b_y = s2[1], tr_b_x = s2[2], tr_b_y = s2[3];
@@ -92,6 +91,26 @@ bool intersect(vector<int> s1, vector<int> s2) {
 	} else {
 		return true;
 	}
+}
+```
+
+### Encontrar el area de una interseccion entre 2 rectangulos
+Supondremos que la forma resultante de la intersección de dos rectángulos es también un rectángulo
+
+Primero encontraremos el largo y ancho del rectangulo intersectado 
+
+Largo = min(tr<sub>a<sub>y</sub></sub>, tr<sub>b<sub>y</sub></sub>) - max(bl<sub>a<sub>y</sub></sub>, bl<sub>b<sub>y</sub></sub>)
+
+Ancho = min(tr<sub>a<sub>x</sub></sub>, tr<sub>b<sub>x</sub></sub>) - max(bl<sub>a<sub>x</sub></sub>, bl<sub>b<sub>x</sub></sub>)
+
+Implementacion
+```
+int interArea(vector<int> s1, vector<int> s2) {
+	int bl_a_x = s1[0], bl_a_y = s1[1], tr_a_x = s1[2], tr_a_y = s1[3];
+	int bl_b_x = s2[0], bl_b_y = s2[1], tr_b_x = s2[2], tr_b_y = s2[3];
+
+	return ((min(tr_a_x, tr_b_x) - max(bl_a_x, bl_b_x)) *
+	        (min(tr_a_y, tr_b_y) - max(bl_a_y, bl_b_y)));
 }
 ```
 
