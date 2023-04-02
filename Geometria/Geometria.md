@@ -14,7 +14,7 @@ donde EPS es un número pequeño como 1e-9 (es decir, 10⁹ o 0.000000001) en lu
 - Aplazar las operaciónes de punto flotante lo más tarde posible para reducir el efecto de errores acumulativos.
 - Reducir la cantidad de operaciones de punto flotante tanto como sea posible, por ejemplo, en lugar de calcular a/b/c (dos divisiones de punto flotante), calculamos a/(b * c) (sólo una división de punto flotante).
 
-### Formulas
+### Formulas de Puntos
 Pendiente a partir de un punto positivo: m = Y/X 
 
 ### Producto Cruz
@@ -44,6 +44,29 @@ Consideraciones para
 
 ### Segmento de linea
 Es una línea con dos puntos finales que tiene una longitud finita.
+
+## Rectangulo
+Representaremos los rectangulos con 2 puntos la esquina superior derecha (top right = tr) 
+y esquina inferior izquierda (bottom left = bl) 
+Algunas formulas que involucran el area de dos o mas rectangulos basados en sus coordenadas
+X y Y o determinando si los rectangulos intersectan
+
+### Area de un rectangulo
+Formula del area de un solo rectangulo largo por ancho
+Largo es la longitud de los lados verticales y el ancho la longitud de los lados horizontales
+largo = try - bly
+ancho = trx - blx
+area = largo * ancho
+
+Implementacion 
+
+long long area(int bl_x, int bl_y, int tr_x, int tr_y) {
+	long long length = tr_y - bl_y;
+	long long width = tr_x - bl_x;
+	return length * width;
+}
+
+
 
 ## Vector
 Es un segmento de línea (por lo tanto, tiene dos puntos finales y longitud/magnitud) con una dirección.

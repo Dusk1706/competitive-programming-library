@@ -9,7 +9,7 @@ using namespace std;
 #define FORR(x, a, b) for(int x = a; x >= b; x--)
 #define deb(x)      cerr << #x << " = " << x << '\n';
 #define deb2(x, y)  cerr << #x << " = " << x << ", " << #y << " = " << y << '\n';
-#define _ ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define _ ios_base::sync_with_stdio(0);cin.tie(0);
 typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int,int> ii;
