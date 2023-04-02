@@ -54,9 +54,10 @@ X y Y o determinar si los rectangulos intersectan
 ### Area de un rectangulo
 Formula del area de un solo rectangulo largo por ancho
 Largo es la longitud de los lados verticales y el ancho la longitud de los lados horizontales
-largo = try - bly
-ancho = trx - blx
-area = largo * ancho
+
+Largo = try - bly
+Ancho = trx - blx
+Area = largo * ancho
 
 Implementacion 
 ```
@@ -77,6 +78,7 @@ En todos los demas casos los rectangulos se intersectan
 
 Implementacion
 ```
+// Tambien 
 bool intersect(vector<int> s1, vector<int> s2) {
 	int bl_a_x = s1[0], bl_a_y = s1[1], tr_a_x = s1[2], tr_a_y = s1[3];
 	int bl_b_x = s2[0], bl_b_y = s2[1], tr_b_x = s2[2], tr_b_y = s2[3];
