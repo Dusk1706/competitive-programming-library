@@ -70,7 +70,8 @@ long long area(int bl_x, int bl_y, int tr_x, int tr_y) {
 Dados dos rectangulos a y b solo hay 2 casos que no pueden intersectarse
 Recordando (tr = top right), (bl = bottom left) 
 
-tr<sub>a<sub>y</sub></sub> <= bl<sub>b<sub>y</sub></sub> o bl<sub>a<sub>y</sub></sub> >= tr<sub>b<sub>y</sub></sub>
+[tr<sub>a<sub>y</sub></sub> <= bl<sub>b<sub>y</sub></sub>] o [bl<sub>a<sub>y</sub></sub> >= tr<sub>b<sub>y</sub></sub>]
+[bl<sub>a<sub>x</sub></sub> >= tr<sub>b<sub>x</sub></sub>] o [tr<sub>a<sub>x</sub></sub> <= bl<sub>b<sub>x</sub></sub>]
 
 ## Vector
 Es un segmento de línea (por lo tanto, tiene dos puntos finales y longitud/magnitud) con una dirección.
