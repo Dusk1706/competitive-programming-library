@@ -53,6 +53,7 @@ X y Y o determinar si los rectangulos intersectan
 
 ### Area de un rectangulo
 Formula del area de un solo rectangulo largo por ancho
+
 Largo es la longitud de los lados verticales y el ancho la longitud de los lados horizontales
 
 Largo = try - bly
