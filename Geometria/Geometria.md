@@ -56,7 +56,9 @@ Formula del area de un solo rectangulo largo por ancho
 Largo es la longitud de los lados verticales y el ancho la longitud de los lados horizontales
 
 Largo = try - bly
+
 Ancho = trx - blx
+
 Area = largo * ancho
 
 Implementacion 
