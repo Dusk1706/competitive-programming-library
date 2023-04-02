@@ -71,6 +71,7 @@ Dados dos rectangulos a y b solo hay 2 casos que no pueden intersectarse
 Recordando (tr = top right), (bl = bottom left) 
 
 [tr<sub>a<sub>y</sub></sub> <= bl<sub>b<sub>y</sub></sub>] o [bl<sub>a<sub>y</sub></sub> >= tr<sub>b<sub>y</sub></sub>]
+
 [bl<sub>a<sub>x</sub></sub> >= tr<sub>b<sub>x</sub></sub>] o [tr<sub>a<sub>x</sub></sub> <= bl<sub>b<sub>x</sub></sub>]
 
 ## Vector
