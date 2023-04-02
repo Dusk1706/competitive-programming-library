@@ -49,7 +49,7 @@ Es una línea con dos puntos finales que tiene una longitud finita.
 Representaremos los rectangulos con 2 puntos la esquina superior derecha (top right = tr) 
 y esquina inferior izquierda (bottom left = bl) 
 Algunas formulas que involucran el area de dos o mas rectangulos basados en sus coordenadas
-X y Y o determinando si los rectangulos intersectan
+X y Y o determinar si los rectangulos intersectan
 
 ### Area de un rectangulo
 Formula del area de un solo rectangulo largo por ancho
@@ -66,7 +66,10 @@ long long area(int bl_x, int bl_y, int tr_x, int tr_y) {
 	return length * width;
 }
 ```
-
+### Comprobar si dos rectangulos se intersectan
+Dados dos rectangulos a y b solo hay 2 casos que no pueden intersectarse
+Recordando (tr = top right), (bl = bottom left) 
+tr<sub>a<sub>y</sub></sub> <= bl<sub>b<sub>y</sub></sub> o bl<sub>a<sub>y</sub></sub> >= tr<sub>b<sub>y</sub></sub>
 
 ## Vector
 Es un segmento de línea (por lo tanto, tiene dos puntos finales y longitud/magnitud) con una dirección.
