@@ -73,6 +73,24 @@ Dados dos rectangulos a y b solo hay 2 casos que no pueden intersectarse, record
 
 [ bl<sub>a<sub>x</sub></sub> >= tr<sub>b<sub>x</sub></sub> ] o [ tr<sub>a<sub>x</sub></sub> <= bl<sub>b<sub>x</sub></sub> ]
 
+En todos los demas casos los rectangulos se intersectan
+
+Implementacion
+```
+bool intersect(vector<int> s1, vector<int> s2) {
+	int bl_a_x = s1[0], bl_a_y = s1[1], tr_a_x = s1[2], tr_a_y = s1[3];
+	int bl_b_x = s2[0], bl_b_y = s2[1], tr_b_x = s2[2], tr_b_y = s2[3];
+
+	// No comparten Area comun
+	if (bl_a_x >= tr_b_x || tr_a_x <= bl_b_x || bl_a_y >= tr_b_y ||
+	    tr_a_y <= bl_b_y) {
+		return false;
+	} else {
+		return true;
+	}
+}
+```
+
 ## Vector
 Es un segmento de línea (por lo tanto, tiene dos puntos finales y longitud/magnitud) con una dirección.
 
