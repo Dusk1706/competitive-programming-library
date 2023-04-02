@@ -99,9 +99,9 @@ Supondremos que la forma resultante de la intersección de dos rectángulos es t
 
 Primero encontraremos el largo y ancho del rectangulo intersectado 
 
-Largo = min(tr<sub>a<sub>y</sub></sub>, tr<sub>b<sub>y</sub></sub>) - max(bl<sub>a<sub>y</sub></sub>, bl<sub>b<sub>y</sub></sub>)
+Largo = min(tr<sub>a<sub>y</sub></sub> , tr<sub>b<sub>y</sub></sub>) - max(bl<sub>a<sub>y</sub></sub> , bl<sub>b<sub>y</sub></sub>)
 
-Ancho = min(tr<sub>a<sub>x</sub></sub>, tr<sub>b<sub>x</sub></sub>) - max(bl<sub>a<sub>x</sub></sub>, bl<sub>b<sub>x</sub></sub>)
+Ancho = min(tr<sub>a<sub>x</sub></sub> , tr<sub>b<sub>x</sub></sub>) - max(bl<sub>a<sub>x</sub></sub> , bl<sub>b<sub>x</sub></sub>)
 
 Implementacion
 ```
