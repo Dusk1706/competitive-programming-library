@@ -49,11 +49,20 @@ Es una línea con dos puntos finales que tiene una longitud finita.
 Representaremos los rectangulos con 2 puntos la esquina superior derecha (top right = tr) 
 y esquina inferior izquierda (bottom left = bl) 
 Algunas formulas que involucran el area de dos o mas rectangulos basados en sus coordenadas
-X y Y o determinar si los rectangulos intersectan
+X y Y o determinar si los rectangulos intersectan.
 
-### Area de un rectangulo
-Formula del area de un solo rectangulo
+Representacion de un rectangulo 
+Donde x1, y1 son las coordenadas de la esquina inferior izquierda (bottom left) 
+y x2, y2 son las coordenadas de la esquina superior derecha (top right)
+```
+struct Rect {
+	int x1, y1, x2, y2;
+	int area() { return (y2 - y1) * (x2 - x1); }
+	void input(){ cin>>x1>>y1>>x2>>y2; }
+};
+```
 
+### Largo, Ancho y Area de un rectangulo
 Largo es la longitud de los lados verticales y el ancho la longitud de los lados horizontales
 
 Largo = try - bly
@@ -62,14 +71,6 @@ Ancho = trx - blx
 
 Area = largo * ancho
 
-Implementacion 
-```
-long long area(int bl_x, int bl_y, int tr_x, int tr_y) {
-	long long length = tr_y - bl_y;
-	long long width = tr_x - bl_x;
-	return length * width;
-}
-```
 ### Comprobar si dos rectangulos se intersectan
 Dados dos rectangulos a y b solo hay 2 casos que no pueden intersectarse, recordando (tr = top right), (bl = bottom left) 
 
@@ -81,16 +82,12 @@ En todos los demas casos los rectangulos se intersectan
 
 Implementacion
 ```
-bool intersect(vector<int> s1, vector<int> s2) {
-	int bl_a_x = s1[0], bl_a_y = s1[1], tr_a_x = s1[2], tr_a_y = s1[3];
-	int bl_b_x = s2[0], bl_b_y = s2[1], tr_b_x = s2[2], tr_b_y = s2[3];
-
+bool intersect(Rect a, Rect b) {
 	// No comparten Area comun
-	if (bl_a_x >= tr_b_x || tr_a_x <= bl_b_x || bl_a_y >= tr_b_y || tr_a_y <= bl_b_y) {
+	if (a.x1 >= b.x2 || a.x2 <= b.x1 || a.y1 >= b.y2 || a.y2 <= b.y1) {
 		return false;
-	} else {
-		return true;
 	}
+	return true;
 }
 ```
 
@@ -103,14 +100,14 @@ Largo = min(tr<sub>a<sub>y</sub></sub> , tr<sub>b<sub>y</sub></sub>) - max(bl<su
 
 Ancho = min(tr<sub>a<sub>x</sub></sub> , tr<sub>b<sub>x</sub></sub>) - max(bl<sub>a<sub>x</sub></sub> , bl<sub>b<sub>x</sub></sub>)
 
+Si alguno de estos valores largo o ancho es negativo no se intersectan. si son cero los rectangulos se intersectan en un solo punto. Se multiplica largo por ancho para saber el area comun
+
 Implementacion
 ```
-int interArea(vector<int> s1, vector<int> s2) {
-	int bl_a_x = s1[0], bl_a_y = s1[1], tr_a_x = s1[2], tr_a_y = s1[3];
-	int bl_b_x = s2[0], bl_b_y = s2[1], tr_b_x = s2[2], tr_b_y = s2[3];
-
-	return ((min(tr_a_x, tr_b_x) - max(bl_a_x, bl_b_x)) *
-	        (min(tr_a_y, tr_b_y) - max(bl_a_y, bl_b_y)));
+int intersectArea(Rect a, Rect b) {
+	int xOverlap = max(0, min(a.x2, b.x2) - max(a.x1, b.x1));
+	int yOverlap = max(0, min(a.y2, b.y2) - max(a.y1, b.y1));
+	return xOverlap * yOverlap;
 }
 ```
 
