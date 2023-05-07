@@ -20,23 +20,33 @@ ll n, m, q, k, l, r, x, y, z, ans=0;
 string s,t;
 
 int main(){ _
-    
+    //Numero de caminos para llegar de la esquina 
+    // superior izquierda a la esquina inferior derecha
     cin>>n;
-    int h[n];
-    ll dp[n];
+    char grid[n][n];
     FOR(i,n){
-        cin>>h[i];
-        dp[i]=INF;
-    }
-    dp[0]=0;
-    FOR(i,n){
-        if(i+1<n){
-            dp[i+1]=min(dp[i]+abs(h[i]-h[i+1]), dp[i+1]);
-        }
-        if(i+2<n){
-            dp[i+2]=min(dp[i]+abs(h[i]-h[i+2]), dp[i+2]);
+        FOR(j,n){
+            cin>>grid[i][j];
         }
     }
-    cout<<dp[n-1];
+    ll dp[n][n];
+    
+    memset(dp,0,sizeof(dp));
+    dp[0][0]=grid[0][0]=='.';
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(i+1<n && grid[i+1][j]=='.'){
+                dp[i+1][j]+=dp[i][j];
+                dp[i+1][j]%=MOD;
+            }
+            if(j+1<n && grid[i][j+1]=='.'){
+                dp[i][j+1]+=dp[i][j];
+                dp[i][j+1]%=MOD;
+            }
+                
+        }
+    }
+    cout<<dp[n-1][n-1]<<ENDL;
+
   return 0;
 }

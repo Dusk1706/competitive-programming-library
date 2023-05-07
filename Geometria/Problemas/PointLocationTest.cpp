@@ -10,9 +10,7 @@ struct P {
   ll x, y;                                      
   P() { x = y = 0; }                        
   P(ll _x, ll _y) : x(_x), y(_y) {}
-  void read(){
-    cin>>x>>y;
-  }
+  void read(){ cin>>x>>y;}
   bool operator==(const P &p){return x==p.x && y==p.y;}  
   P operator+(const P &p){return P(x+p.x,y+p.y);}
   P operator-(const P &p){return P(x-p.x,y-p.y);}

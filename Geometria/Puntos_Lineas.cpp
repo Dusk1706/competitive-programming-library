@@ -1,58 +1,52 @@
 #include <bits/stdc++.h>
+//Pura gente del coach moy
 using namespace std;
-
+#define ENDL '\n'
 const double INF = 1e9;
-const double EPS = 1e-9;
+const double EPS = 1e-9; // 1e-9 es suficiente para problemas de precision doble
 const double PI=acos(-1.0);
-
 double DEG_to_RAD(double d) { return d*M_PI/180.0; }
 double RAD_to_DEG(double r) { return r*180.0/M_PI; }
 
 struct P {
   int x, y;                                      
-  P() { x = y = 0; }                        
-  P(int _x, int _y) : x(_x), y(_y) {}
-  bool operator==(const P &p){return x==p.x && y==p.y;}  
+  P(int x=0, int y=0) : x(x), y(y) {}//P p(x,y) o crear metodo read
+  double length() {return sqrt(x*x+y*y);} //hypot(x, y) mas lento pero tiene mas precision
+  long long operator*(P p)const{return x*p.x + y*p.y;} // Producto punto
+  long long operator%(P p)const{return x*p.y - y*p.x;} // Producto Cruz
+  friend ostream& operator<<(ostream& os, P p) {
+		return os << "(" << p.x << "," << p.y << ")"; }
+  bool operator==(const P &p){return x==p.x && y==p.y;}  //Se usa mas para vectores  
   P operator+(const P &p)const{return P(x+p.x,y+p.y);}
   P operator-(const P &p)const{return P(x-p.x,y-p.y);}
-  long long operator*(P p)const{return x*p.y-y*p.x;}
 };
 
-struct pt {// for 3D add z coordinate
+struct PT {// for 3D add z coordinate
   double x, y;                                   
-  pt() { x = y = 0.0; }                       
-  pt(double _x, double _y) : x(_x), y(_y) {}  
-
-  bool operator==(pt p){return abs(x-p.x)<=EPS&&abs(y-p.y)<=EPS;}
-  pt operator+(pt p){return pt(x+p.x,y+p.y);}
-  pt operator-(pt p){return pt(x-p.x,y-p.y);}
-  pt operator*(double t){return pt(x*t,y*t);}
-	pt operator/(double t){return pt(x/t,y/t);}
-  double operator*(pt p){return x*p.x+y*p.y;}
-  // pt operator^(pt p){ //only for 3D
-  //		return pt(y*p.z-z*p.y,z*p.x-x*p.z,x*p.y-y*p.x);}
-  double operator%(pt p){return x*p.y-y*p.x;}
-  
-  // bool operator<(pt p)const{ // for convex hull
-	// 	return x<p.x-EPS||(abs(x-p.x)<=EPS&&y<p.y-EPS);}
-  bool operator < (pt other) const {          
+  PT(double x=0.0, double y=0) : x(x), y(y) {}//PT p(x,y) o crear metodo read
+  bool operator==(PT p){return abs(x-p.x)<=EPS&&abs(y-p.y)<=EPS;}
+  PT operator+(PT p){return PT(x+p.x,y+p.y);}
+  PT operator-(PT p){return PT(x-p.x,y-p.y);}
+  PT operator*(double t){return PT(x*t,y*t);}
+	PT operator/(double t){return PT(x/t,y/t);}
+  double operator*(PT p){return x*p.x+y*p.y;}
+  double operator%(PT p){return x*p.y-y*p.x;}
+  bool operator < (PT other) const {          
     if (fabs(x-other.x) > EPS)                   // Util para ordenar
       return x < other.x;                        // Por coordenada X
     return y < other.y;                          // Si empatan por coordenada Y
   }
-
 };
 
 
-double dist(const pt &p1, const pt &p2) {                // Euclidean distance
-  // hypot(dx, dy) returns sqrt(dx*dx + dy*dy)
+double dist(const PT &p1, const PT &p2) {         // Euclidean distance
   return hypot(p1.x-p2.x, p1.y-p2.y);            // return double
 }
 
 // Rotar p por theta grados en contra de las manecillas alrededor del origen (0, 0)
-pt rotate(pt p, double theta) {
+PT rotate(PT p, double theta) {
   double rad = DEG_to_RAD(theta);                // Convertir a radian
-  return pt(p.x*cos(rad) - p.y*sin(rad),
+  return PT(p.x*cos(rad) - p.y*sin(rad),
                p.x*sin(rad) + p.y*cos(rad));
 }
 
@@ -61,7 +55,7 @@ pt rotate(pt p, double theta) {
 struct line { double a, b, c; };                 // most versatile
 
 // Convierte 2 puntos en una linea pasada por referencia
-void pointsToLine(pt p1, pt p2, line &l) {
+void pointsToLine(PT p1, PT p2, line &l) {
   if (fabs(p1.x-p2.x) < EPS)                     // vertical line is fine
     l = {1.0, 0.0, -p1.x};                       // default values
   else {
@@ -73,7 +67,7 @@ void pointsToLine(pt p1, pt p2, line &l) {
 // not needed since we will use the more robust form: ax + by + c = 0
 struct line2 { double m, c; };                   // alternative way
 
-int pointsToLine2(pt p1, pt p2, line2 &l) {
+int pointsToLine2(PT p1, PT p2, line2 &l) {
   if (p1.x == p2.x) {                            // vertical line
     l.m = INF;                                   // this is to denote a
     l.c = p1.x;                                  // line x = x_value
@@ -95,7 +89,7 @@ bool areSame(line l1, line l2) {                 // also check  c
 }
 
 // returns true (+ intersection point p) if two lines are intersect
-bool areIntersect(line l1, line l2, pt &p) {
+bool areIntersect(line l1, line l2, PT &p) {
   if (areParallel(l1, l2)) return false;         // no intersection
   // solve system of 2 linear algebraic equations with 2 unknowns
   p.x = (l2.b*l1.c - l1.b*l2.c) / (l2.a*l1.b - l1.a*l2.b);
@@ -108,24 +102,24 @@ bool areIntersect(line l1, line l2, pt &p) {
 struct vec { double x, y; // name: `vec' is different from STL vector
   vec(double _x, double _y) : x(_x), y(_y) {}
 };
-vec toVec(const pt &a, const pt &b) {      // convert 2 points
+vec toVec(const PT &a, const PT &b) {      // convert 2 points
   return vec(b.x-a.x, b.y-a.y);                  // to vector a->b
 }
 vec scale(const vec &v, double s) {              // s = [<1..1..>1]
   return vec(v.x*s, v.y*s);                      // shorter/eq/longer
 }                                                // return a new vec
-pt translate(const pt &p, const vec &v) {  // translate p
-  return pt(p.x+v.x, p.y+v.y);                // according to v
+PT translate(const PT &p, const vec &v) {  // translate p
+  return PT(p.x+v.x, p.y+v.y);                // according to v
 }                                                // return a new point
 
 // convert point and gradient/slope to line
-void pointSlopeToLine(pt p, double m, line &l) {
+void pointSlopeToLine(PT p, double m, line &l) {
   l.a = -m;                                      // always -m
   l.b = 1;                                       // always 1
   l.c = -((l.a * p.x) + (l.b * p.y));            // compute this
 }
 
-void closestPoint(line l, pt p, pt &ans) {
+void closestPoint(line l, PT p, PT &ans) {
   // this line is perpendicular to l and pass through p
   line perpendicular;                            
   if (fabs(l.b) < EPS) {                         // vertical line
@@ -145,8 +139,8 @@ void closestPoint(line l, pt p, pt &ans) {
 }
 
 // returns the reflection of point on a line
-void reflectionPoint(line l, pt p, pt &ans) {
-  pt b;
+void reflectionPoint(line l, PT p, PT &ans) {
+  PT b;
   closestPoint(l, p, b);                         // similar to distToLine
   vec v = toVec(p, b);                           // create a vector
   ans = translate(translate(p, v), v);           // translate p twice
@@ -158,7 +152,7 @@ double dot(vec a, vec b) { return (a.x*b.x + a.y*b.y); }
 // returns the squared value of the normalized vector
 double norm_sq(vec v) { return v.x*v.x + v.y*v.y; }
 
-double angle(const pt &a, const pt &o, const pt &b) {
+double angle(const PT &a, const PT &o, const PT &b) {
   vec oa = toVec(o, a), ob = toVec(o, b);        // a != o != b
   return acos(dot(oa, ob) / sqrt(norm_sq(oa) * norm_sq(ob)));
 }                                                // angle aob in rad
@@ -166,7 +160,7 @@ double angle(const pt &a, const pt &o, const pt &b) {
 // returns the distance from p to the line defined by
 // two points a and b (a and b must be different)
 // the closest point is stored in the 4th parameter (byref)
-double distToLine(pt p, pt a, pt b, pt &c) {
+double distToLine(PT p, PT a, PT b, PT &c) {
   vec ap = toVec(a, p), ab = toVec(a, b);
   double u = dot(ap, ab) / norm_sq(ab);
   // formula: c = a + u*ab
@@ -177,15 +171,15 @@ double distToLine(pt p, pt a, pt b, pt &c) {
 // returns the distance from p to the line segment ab defined by
 // two points a and b (technically, a has to be different than b)
 // the closest point is stored in the 4th parameter (byref)
-double distToLineSegment(pt p, pt a, pt b, pt &c) {
+double distToLineSegment(PT p, PT a, PT b, PT &c) {
   vec ap = toVec(a, p), ab = toVec(a, b);
   double u = dot(ap, ab) / norm_sq(ab);
   if (u < 0.0) {                                 // closer to a
-    c = pt(a.x, a.y);
+    c = PT(a.x, a.y);
     return dist(p, a);                           // dist p to a
   }
   if (u > 1.0) {                                 // closer to b
-    c = pt(b.x, b.y);
+    c = PT(b.x, b.y);
     return dist(p, b);                           // dist p to b
   }
   return distToLine(p, a, b, c);                 // use distToLine
@@ -204,17 +198,17 @@ double cross(vec a, vec b) { return a.x*b.y - a.y*b.x; }
 
 // note: to accept collinear points, we have to change the `> 0'
 // returns true if point r is on the left side of line pq
-bool ccw(pt p, pt q, pt r) {
+bool ccw(PT p, PT q, PT r) {
   return cross(toVec(p, q), toVec(p, r)) > -EPS;
 }
 
 // returns true if point r is on the same line as the line pq
-bool collinear(pt p, pt q, pt r) {
+bool collinear(PT p, PT q, PT r) {
   return fabs(cross(toVec(p, q), toVec(p, r))) < EPS;
 }
 
 int main() {
-  vector<pt> P;
+  vector<PT> P;
   P.emplace_back(2e-9, 0);                       // largest
   P.push_back({0, 2});                           // smallest
   P.push_back({1e-9, 1});                        // second smallest
@@ -227,17 +221,17 @@ int main() {
   // const double EPS = 1e-10;
   // to fix that issue, Rule of Thumb: check the required precision
 
-  pt P1, P2, P3(0, 1); // note that both P1 and P2 are (0.00, 0.00)
+  PT P1, P2, P3(0, 1); // note that both P1 and P2 are (0.00, 0.00)
   printf("%d\n", P1 == P2);                      // true
   printf("%d\n", P1 == P3);                      // false
 
   P.clear();
-  P.push_back(pt(2, 2));
-  P.push_back(pt(4, 3));
-  P.push_back(pt(2, 4));
-  P.push_back(pt(6, 6));
-  P.push_back(pt(2, 6));
-  P.push_back(pt(6, 5));
+  P.push_back(PT(2, 2));
+  P.push_back(PT(4, 3));
+  P.push_back(PT(2, 4));
+  P.push_back(PT(6, 6));
+  P.push_back(PT(2, 6));
+  P.push_back(PT(6, 5));
 
   // sorting points demo
   sort(P.begin(), P.end());
@@ -246,13 +240,13 @@ int main() {
 
   // rearrange the points as shown in the diagram below
   P.clear();
-  P.push_back(pt(2, 2));
-  P.push_back(pt(4, 3));
-  P.push_back(pt(2, 4));
-  P.push_back(pt(6, 6));
-  P.push_back(pt(2, 6));
-  P.push_back(pt(6, 5));
-  P.push_back(pt(8, 6));
+  P.push_back(PT(2, 2));
+  P.push_back(PT(4, 3));
+  P.push_back(PT(2, 4));
+  P.push_back(PT(6, 6));
+  P.push_back(PT(2, 6));
+  P.push_back(PT(6, 5));
+  P.push_back(PT(8, 6));
 
   /*
   // the positions of these 7 points (0-based indexing)
@@ -285,12 +279,12 @@ int main() {
   printf("l1 & l2 are the same? %d\n", areSame(l1, l2)); // no
   printf("l2 & l4 are the same? %d\n", areSame(l2, l4)); // yes, l2 (P[0]-P[2]) and l4 (P[2]-P[4]) are the same line (note, they are two different line segments, but same line)
   
-  pt p12;
+  PT p12;
   bool res = areIntersect(l1, l2, p12); // yes, l1 (P[0]-P[1]) and l2 (P[0]-P[2]) are intersect at (2.0, 2.0)
   printf("l1 & l2 are intersect? %d, at (%.2lf, %.2lf)\n", res, p12.x, p12.y);
 
   // other distances
-  pt ans;
+  PT ans;
   d = distToLine(P[0], P[2], P[3], ans);
   printf("Closest point from P[0] to line         (P[2]-P[3]): (%.2lf, %.2lf), dist = %.2lf\n", ans.x, ans.y, d);
   closestPoint(l3, P[0], ans);
@@ -316,7 +310,7 @@ int main() {
   printf("P[0], P[2], P[3] are collinear? %d\n", collinear(P[0], P[2], P[3])); // no
   printf("P[0], P[2], P[4] are collinear? %d\n", collinear(P[0], P[2], P[4])); // yes
 
-  pt p(3, 7), q(11, 13), r(35, 30); // collinear if r(35, 31)
+  PT p(3, 7), q(11, 13), r(35, 30); // collinear if r(35, 31)
   printf("r is on the %s of line p-q (direction p->q)\n", ccw(p, q, r) ? "left" : "right"); // right
 
   /*
@@ -332,20 +326,20 @@ int main() {
   */
 
   // translation
-  pt A(2.0, 2.0);
-  pt B(4.0, 3.0);
+  PT A(2.0, 2.0);
+  PT B(4.0, 3.0);
   vec v = toVec(A, B); // imagine there is an arrow from A to B (see the diagram above)
-  pt C(3.0, 2.0);
-  pt D = translate(C, v); // D will be located in coordinate (3.0 + 2.0, 2.0 + 1.0) = (5.0, 3.0)
+  PT C(3.0, 2.0);
+  PT D = translate(C, v); // D will be located in coordinate (3.0 + 2.0, 2.0 + 1.0) = (5.0, 3.0)
   printf("D = (%.2lf, %.2lf)\n", D.x, D.y);
-  pt E = translate(C, scale(v, 0.5)); // E will be located in coordinate (3.0 + 1/2 * 2.0, 2.0 + 1/2 * 1.0) = (4.0, 2.5)
+  PT E = translate(C, scale(v, 0.5)); // E will be located in coordinate (3.0 + 1/2 * 2.0, 2.0 + 1/2 * 1.0) = (4.0, 2.5)
   printf("E = (%.2lf, %.2lf)\n", E.x, E.y);
 
   // rotation
   printf("B = (%.2lf, %.2lf)\n", B.x, B.y); // B = (4.0, 3.0)
-  pt F = rotate(B, 90); // rotate B by 90 degrees COUNTER clockwise, F = (-3.0, 4.0)
+  PT F = rotate(B, 90); // rotate B by 90 degrees COUNTER clockwise, F = (-3.0, 4.0)
   printf("F = (%.2lf, %.2lf)\n", F.x, F.y);
-  pt G = rotate(B, 180); // rotate B by 180 degrees COUNTER clockwise, G = (-4.0, -3.0)
+  PT G = rotate(B, 180); // rotate B by 180 degrees COUNTER clockwise, G = (-4.0, -3.0)
   printf("G = (%.2lf, %.2lf)\n", G.x, G.y);
 
   return 0;
