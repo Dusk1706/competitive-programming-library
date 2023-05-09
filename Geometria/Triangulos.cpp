@@ -4,7 +4,6 @@ using namespace std;
 const double EPS = 1e-9;
 
 double DEG_to_RAD(double d) { return d*M_PI/180.0; }
-
 double RAD_to_DEG(double r) { return r*180.0/M_PI; }
 
 struct point_i {
@@ -43,10 +42,10 @@ double area(point a, point b, point c) {
 
 //====================================================================
 // from points_lines
-struct line { double a, b, c; };                 // most versatile
+struct Line { double a, b, c; };                 // most versatile
 
 // the answer is stored in the third parameter (pass by reference)
-void pointsToLine(point p1, point p2, line &l) {
+void pointsToLine(point p1, point p2, Line &l) {
   if (fabs(p1.x-p2.x) < EPS)                     // vertical line is fine
     l = {1.0, 0.0, -p1.x};                       // default values
   else {
@@ -55,12 +54,12 @@ void pointsToLine(point p1, point p2, line &l) {
   }
 }
 
-bool areParallel(line l1, line l2) {             // check a & b
+bool areParallel(Line l1, Line l2) {             // check a & b
   return (fabs(l1.a-l2.a) < EPS) && (fabs(l1.b-l2.b) < EPS);
 }
 
 // returns true (+ intersection point) if two lines are intersect
-bool areIntersect(line l1, line l2, point &p) {
+bool areIntersect(Line l1, Line l2, point &p) {
   if (areParallel(l1, l2)) return false;            // no intersection
   // solve system of 2 linear algebraic equations with 2 unknowns
   p.x = (l2.b * l1.c - l1.b * l2.c) / (l2.a * l1.b - l1.a * l2.b);
@@ -97,7 +96,7 @@ int inCircle(point p1, point p2, point p3, point &ctr, double &r) {
   r = rInCircle(p1, p2, p3);
   if (fabs(r) < EPS) return 0;                   // no inCircle center
 
-  line l1, l2;                    // compute these two angle bisectors
+  Line l1, l2;                    // compute these two angle bisectors
   double ratio = dist(p1, p2) / dist(p1, p3);
   point p = translate(p2, scale(toVec(p2, p3), ratio / (1 + ratio)));
   pointsToLine(p1, p, l1);
