@@ -6,10 +6,10 @@ const double EPS = 1e-9;
 double DEG_to_RAD(double d) { return d*M_PI/180.0; }
 double RAD_to_DEG(double r) { return r*180.0/M_PI; }
 
-struct point_i {
+struct PT {
   int x, y;                                      // use this if possible
-  point_i() { x = y = 0; }                       // default constructor
-  point_i(int _x, int _y) : x(_x), y(_y) {}      // constructor
+  PT() { x = y = 0; }                       // default constructor
+  PT(int _x, int _y) : x(_x), y(_y) {}      // constructor
 };
 
 struct point {

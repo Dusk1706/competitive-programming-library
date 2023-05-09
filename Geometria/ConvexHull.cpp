@@ -1,9 +1,7 @@
 struct PT{
 	int x, y;
-	PT(){}
-	PT(int x, int y) : x(x), y(y) {}
-	bool operator < (const PT &P) const
-	{
+	PT(int x=0, int y=0) : x(x), y(y) {}
+	bool operator < (const PT &P) const{
 		return x<P.x || (x==P.x && y<P.y);
 	}
 };
