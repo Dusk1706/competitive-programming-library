@@ -21,6 +21,11 @@ struct P {
   P operator*(double a)const{return P(x*a,y*a);}
   P operator+(const P &p)const{return P(x+p.x,y+p.y);}
   P operator-(const P &p)const{return P(x-p.x,y-p.y);}
+  bool operator <(P other) const {          
+    if (fabs(x-other.x) > EPS)              // useful for sorting
+      return x < other.x;                   // by x-coordinate
+    return y < other.y;                     // if tie, by y-coordinate
+  }
 };
 
 double abs(P p) {return sqrt(p.norm_sq());}
@@ -33,6 +38,8 @@ double cross(P a,P b){ return a.x*b.y-a.y*b.x; }
 
 //Distancia entre 2 puntos
 double dist(const P &p1, const P &p2) {return hypot(p1.x-p2.x, p1.y-p2.y);}
+
+double distManhattan(const P &p1, const P &p2){return abs(p1.x-p2.x)+abs(p1.y-p2.y);}
 
 // Rota el punto theta grados en contra de las manecillas alrededor del origen (0, 0)
 P rotate(P p, double theta) {
@@ -55,6 +62,12 @@ bool ccw(P p, P q, P r) {
 // returns true if point r is on the same line as the line pq
 bool collinear(P p, P q, P r) {
   return fabs(cross(toVec(p, q), toVec(p, r))) < EPS;
+}
+
+// Sort counterclockwise 
+// Si el limite es demasiado grande usar atan2l
+bool cmp (const P &a, const P &b) {
+	return atan2(a.y, a.x) < atan2(b.y, b.x);
 }
 
 //Angulo entre 2 vectores [0,PI]
