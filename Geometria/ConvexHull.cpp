@@ -1,18 +1,18 @@
-struct PT{
+struct P{
 	int x, y;
-	PT(int x=0, int y=0) : x(x), y(y) {}
-	bool operator < (const PT &P) const{
+	P(int x=0, int y=0) : x(x), y(y) {}
+	bool operator < (const P &P) const{
 		return x<P.x || (x==P.x && y<P.y);
 	}
 };
 
 
 
-ll cross(const PT p, const PT q, const PT r){ 
+ll cross(const P p, const P q, const P r){ 
 	return (ll)(q.x-p.x)*(ll)(r.y-p.y)-(ll)(q.y-p.y)*(ll)(r.x-p.x);
 }
 
-vector<PT> Points, Hull;
+vector<P> Points, Hull;
 
 void findConvexHull(){
 	int n=Points.size(), k=0;

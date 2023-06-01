@@ -4,10 +4,10 @@ using namespace std;
 double DEG_to_RAD(double d) { return d*M_PI/180.0; }
 double RAD_to_DEG(double r) { return r*180.0/M_PI; }
 
-struct PT {
+struct P {
   int x, y;                                      // use this if possible
-  PT() { x = y = 0; }                       // default constructor
-  PT(int _x, int _y) : x(_x), y(_y) {}      // constructor
+  P() { x = y = 0; }                       // default constructor
+  P(int _x, int _y) : x(_x), y(_y) {}      // constructor
 };
 
 struct P {
@@ -16,7 +16,7 @@ struct P {
   P(double _x, double _y) : x(_x), y(_y) {}  // constructor
 };
 
-int insideCircle(PT p, PT c, int r) {  // all integer version
+int insideCircle(P p, P c, int r) {  // all integer version
   int dx = p.x-c.x, dy = p.y-c.y;
   int Euc = dx*dx + dy*dy, rSq = r*r;            // all integer
   return Euc < rSq ? 1 : Euc == rSq ? 0 : -1;    // inside/border/outside
@@ -36,13 +36,13 @@ bool circle2PtsRad(P p1, P p2, double r, P &c) {
 
 int main() {
   // circle equation, inside, border, outside
-  PT pt(2, 2);
+  P pt(2, 2);
   int r = 7;
-  PT inside(8, 2);
+  P inside(8, 2);
   printf("%d\n", insideCircle(inside, pt, r));   // 1, inside
-  PT border(9, 2);
+  P border(9, 2);
   printf("%d\n", insideCircle(border, pt, r));   // 0, at border
-  PT outside(10, 2);
+  P outside(10, 2);
   printf("%d\n", insideCircle(outside, pt, r));  // -1, outside
 
   double d = 2*r;

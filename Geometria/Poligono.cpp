@@ -18,11 +18,8 @@ struct P { double x, y;   // only used if more precision is needed
     } 
 };
 
-struct vec { double x, y;  // name: `vec' is different from STL vector
-  vec(double _x, double _y) : x(_x), y(_y) {} };
-
-vec toVec(P a, P b) {       // convert 2 points to vector a->b
-  return vec(b.x-a.x, b.y-a.y); }
+P toVec(P a, P b) {       // convert 2 points to vector a->b
+  return P(b.x-a.x, b.y-a.y); }
 
 double dist(P p1, P p2) {                // Euclidean distance
   return hypot(p1.x-p2.x, p1.y-p2.y); }               // return double
@@ -44,15 +41,15 @@ double area(const vector<P> &pts) {
   return fabs(ans)/2.0;                          // only do / 2.0 here
 }
 
-double dot(vec a, vec b) { return (a.x*b.x + a.y*b.y); }
+double dot(P a, P b) { return (a.x*b.x + a.y*b.y); }
 
-double norm_sq(vec v) { return v.x*v.x + v.y*v.y; }
+double norm_sq(P v) { return v.x*v.x + v.y*v.y; }
 
 double angle(P a, P o, P b) {  // returns angle aob in rad
-  vec oa = toVec(o, a), ob = toVec(o, b);
+  P oa = toVec(o, a), ob = toVec(o, b);
   return acos(dot(oa, ob) / sqrt(norm_sq(oa) * norm_sq(ob))); }
 
-double cross(vec a, vec b) { return a.x*b.y - a.y*b.x; }
+double cross(P a, P b) { return a.x*b.y - a.y*b.x; }
 
 // returns the area of polygon P, which is half the cross products
 // of vectors defined by edge endpoints

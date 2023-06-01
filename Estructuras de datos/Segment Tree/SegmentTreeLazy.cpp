@@ -65,8 +65,8 @@ class LazySegmentTree {
   public:
     LazySegmentTree(int sz) : n(sz), st(4 * n), lazy(4 * n) {} // Constructor de st sin valores
 
-    LazySegmentTree(const vi &initialA) : LazySegmentTree((int)initialA.size()) { // Constructor de st con arreglo inicial
-        A = initialA;
+    LazySegmentTree(const vi &arr) : LazySegmentTree((int)arr.size()) { // Constructor de st con arreglo inicial
+        A = arr;
         build(1, 0, n - 1);
     }
 

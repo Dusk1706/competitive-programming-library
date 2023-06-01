@@ -63,11 +63,16 @@ bool ccw(P p, P q, P r) {
 bool collinear(P p, P q, P r) {
   return fabs(cross(toVec(p, q), toVec(p, r))) < EPS;
 }
+//-1 negativo, 0 cero, 1 positivo
+int sgn(double a) { return (a>EPS)-(a<-EPS); }
 
 // Sort counterclockwise 
-// Si el limite es demasiado grande usar atan2l
-bool cmp (const P &a, const P &b) {
-	return atan2(a.y, a.x) < atan2(b.y, b.x);
+// WARNING: you will get unexpected results if you mistype this as bool instead of int
+// -1 if lower half, 0 if origin, 1 if upper half
+int half(P p) { return p.y != 0 ? sgn(p.y) : -sgn(p.x); }
+bool angleCmp(P a, P b) { 
+  int A = half(a), B = half(b);
+	return A == B ? cross(a,b) > 0 : A < B; 
 }
 
 //Angulo entre 2 vectores [0,PI]
@@ -196,7 +201,6 @@ int main(){
     cout << (fixed) << setprecision(10);
     P a,b,p,c;
     a.read();
-    b.read();
     
 
   return 0;
