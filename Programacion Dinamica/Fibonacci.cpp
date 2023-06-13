@@ -2,6 +2,8 @@
 
 using namespace std;
 
+#define MAX 100000
+
 //Fibonacci manera iterativa complejidad O(n)
 long long fiboIterativo(int n){
     long long arr[n+1];
@@ -17,17 +19,29 @@ long long fiboIterativo(int n){
 long long memo[1001];
 
 long long fiboRecursivo(int n){
-    if(memo[n]!=-1)return memo[n];
-    if(n<=2) return 1;
-    memo[n]=fiboRecursivo(n-1)+fiboRecursivo(n-2);
+    if(n<=1){
+        return n;
+    } 
+    if(memo[n]==0){
+        memo[n]=fiboRecursivo(n-1)+fiboRecursivo(n-2);
+    }
     return memo[n];
+}
+
+long long fiboSinMemo(int n){
+    if(n <= 1){
+        return n;
+    }
+    return fiboSinMemo(n - 1) + fiboSinMemo(n - 2);
 }
 
 
 int main(){
-    memset(memo, -1, sizeof memo);
-    // cout<<fiboIterativo(0)<<endl;
-    cout<<fiboRecursivo(0)<<endl;
-
+    int n;
+    cin>>n;
+    // cout<<"Fibonacci sin memoizacion: "<<fiboSinMemo(n)<<endl;
+    // cout<<"Fibonacci Iterativo: "<<fiboIterativo(n)<<endl;
+    cout<<"Fibonacci recursivo con memoizacion: "<<fiboRecursivo(n)<<endl;
+    
     return 0;
 }

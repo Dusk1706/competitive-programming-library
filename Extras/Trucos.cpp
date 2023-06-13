@@ -26,33 +26,33 @@ int main() {
     // Redondea el valor dado al entero mas cercano
     round(5.5);
 
-    // Se realiza la operacion y redondea, siempre que se pueda, hacia abajo el numero
-    cout << a / b;
+    // // Se realiza la operacion y redondea, siempre que se pueda, hacia abajo el numero
+    // cout << a / b;
 
-    // Se realiza la operacion y redondea, siempre que se pueda, hacia arriba el numero
-    cout << (a + b - 1) / b;
+    // // Se realiza la operacion y redondea, siempre que se pueda, hacia arriba el numero
+    // cout << (a + b - 1) / b;
 
-    // Llena el arreglo/vector x, con value en cada posicion.
-    fill(begin(x), end(x), value);
+    // // Llena el arreglo/vector x, con value en cada posicion.
+    // fill(begin(x), end(x), value);
 
-    // True si encuentra el valor, false si no
-    binary_search(begin(x), end(x), value);
+    // // True si encuentra el valor, false si no
+    // binary_search(begin(x), end(x), value);
 
-    // Retorna un iterador que apunta a un elemento mayor o igual a value
-    lower_bound(begin(x), end(x), value);
+    // // Retorna un iterador que apunta a un elemento mayor o igual a value
+    // lower_bound(begin(x), end(x), value);
 
-    // Retorna un iterador que apunta a un elemento MAYOR a value
-    upper_bound(begin(x), end(x), value);
+    // // Retorna un iterador que apunta a un elemento MAYOR a value
+    // upper_bound(begin(x), end(x), value);
 
-    // Retorna un pair de iteradores, donde first es el lower_bound y second el upper_bound
-    equal_range(begin(x), end(x), value);
+    // // Retorna un pair de iteradores, donde first es el lower_bound y second el upper_bound
+    // equal_range(begin(x), end(x), value);
 
-    // Llena la estructura con el valor (unicamente puede ser -1 o 0)
-    memset(estructura, valor, sizeof estrutura);
+    // // Llena la estructura con el valor (unicamente puede ser -1 o 0)
+    // memset(estructura, valor, sizeof estrutura);
 
-    // True si esta ordenado x, false si no.
-    is_sorted(begin(x), end(x));
+    // // True si esta ordenado x, false si no.
+    // is_sorted(begin(x), end(x));
 
-    // Ordena de forma que si hay 2 cincos, el primer cinco estara acomodado antes del segundo, tras ser ordenado
-    stable_sort(begin(x), end(x));
+    // // Ordena de forma que si hay 2 cincos, el primer cinco estara acomodado antes del segundo, tras ser ordenado
+    // stable_sort(begin(x), end(x));
 }

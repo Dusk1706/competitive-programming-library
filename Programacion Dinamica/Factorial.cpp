@@ -1,20 +1,25 @@
 #include <bits/stdc++.h>
-using namespace std;
-#define ull unsigned long long
-map<ull,ull> m;
 
-ull f(int n){
-    if(m[n]!=0)
-        return m[n];
-    if(n<0)
+using namespace std;
+
+#define MAX 100000
+long long memo[MAX];
+
+long long factorial(int n){
+    if(memo[n]!=0){
+        return memo[n];
+    }
+    if(n<0){
         return 0;
-    if(n==0||n==1)
+    }
+    if(n==0 || n==1){
         return 1;
-    return m[n]=n*f(n-1);
+    }
+    return memo[n] = n * factorial(n-1);
 }
 
 int main(){
-    ull n;
+    int n;
     cin>>n;
-    cout<<f(n);
+    cout<<factorial(n);
 }

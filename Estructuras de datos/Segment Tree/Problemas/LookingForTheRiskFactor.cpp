@@ -1,8 +1,6 @@
 /*
     Problema https://matcomgrader.com/problem/9553/looking-for-the-risk-factor/
 
-
-
 */
 #include <bits/stdc++.h>
 
