@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-struct Point
+struct P
 {
 	int x;
 	int y;
@@ -10,7 +10,7 @@ struct Point
 
 // Given three collinear points p, q, r, the function checks if
 // point q lies on line segment 'pr'
-bool onSegment(Point p, Point q, Point r){
+bool onSegment(P p, P q, P r){
 	if (q.x <= max(p.x, r.x) && q.x >= min(p.x, r.x) &&
 		q.y <= max(p.y, r.y) && q.y >= min(p.y, r.y))
 	return true;
@@ -23,7 +23,7 @@ bool onSegment(Point p, Point q, Point r){
 // 0 --> p, q and r are collinear
 // 1 --> Clockwise
 // 2 --> Counterclockwise
-int orientation(Point p, Point q, Point r){
+int orientation(P p, P q, P r){
 	// See https://www.geeksforgeeks.org/orientation-3-ordered-points/
 	// for details of below formula.
 	int val = (q.y - p.y) * (r.x - q.x) -
@@ -34,7 +34,7 @@ int orientation(Point p, Point q, Point r){
 	return (val > 0)? 1: 2; // clock or counterclock wise
 }
 
-bool doIntersect(Point p1, Point p2, Point p3, Point p4){
+bool doIntersect(P p1, P p2, P p3, P p4){
 	// Find the four orientations needed for general and
 	// special cases
 	int o1 = orientation(p1, p2, p3);
@@ -63,8 +63,8 @@ bool doIntersect(Point p1, Point p2, Point p3, Point p4){
 }
 
 int main(){
-	struct Point p1 = {1, 1}, q1 = {10, 1};
-	struct Point p2 = {1, 2}, q2 = {10, 2};
+	struct P p1 = {1, 1}, q1 = {10, 1};
+	struct P p2 = {1, 2}, q2 = {10, 2};
 
 	doIntersect(p1, q1, p2, q2)? cout << "Yes\n": cout << "No\n";
 

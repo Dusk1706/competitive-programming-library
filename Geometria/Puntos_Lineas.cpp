@@ -7,8 +7,8 @@ const double INF = 1e9;
 const double EPS = 1e-9; // 1e-9 es suficiente para problemas de precision doble
 const double PI=acos(-1.0);
 
-double DEG_to_RAD(double d) { return d*M_PI/180.0; }
-double RAD_to_DEG(double r) { return r*180.0/M_PI; }
+double DEG_to_RAD(double d) { return d*PI/180.0; }
+double RAD_to_DEG(double r) { return r*180.0/PI; }
 
 struct P {
   double x, y;                                      
