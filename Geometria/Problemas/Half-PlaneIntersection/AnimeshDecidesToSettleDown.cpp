@@ -1,4 +1,8 @@
-//https://www.codechef.com/problems/CHN02?tab=statement
+/*
+    https://www.codechef.com/problems/CHN02?tab=statement
+    Problema: Te dan N poligonos y debes encontrar
+    el area de la interseccion de todos los poligonos.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 const long double EPS = 1e-9, INF = 1e9;
