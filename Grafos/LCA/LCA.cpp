@@ -1,42 +1,122 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
-#define MAX_N 1000
+typedef vector<int> vi;
 
-vector<vector<int>> children;
+struct Grafo{
+    int V;
+    vector<vi> adj, ancestros;
+    vector<bool> ready;
+    vi depth;
 
-int L[2*MAX_N], E[2*MAX_N], H[MAX_N], idx;
+    void init(int _V){
+        V = _V;
+        adj.assign(V, vi());
+        ancestros.assign(V, vi(32, 0));
+        depth.assign(V, 0);
+        ready.assign(V, false);
+    }
 
-void dfs(int cur, int depth) {
-  H[cur] = idx;
-  E[idx] = cur;
-  L[idx++] = depth;
-  for (auto &nxt : children[cur]) {
-    dfs(nxt, depth+1);
-    E[idx] = cur;                              // backtrack to current node
-    L[idx++] = depth;
-} }
+    void ae(int a, int b){ adj[a].push_back(b); }
 
-void buildRMQ() {
-  idx = 0;
-  memset(H, -1, sizeof H);
-  dfs(0, 0);                       // we assume that the root is at index 0
-}
+    void ancest(int v, int anc, int p){
+        if(!ancestros[anc][p - 1]){
+            return;
+        }
+        ancestros[v][p] = ancestros[anc][p - 1];
+        ancest(v, ancestros[anc][p - 1], p + 1);
+    }
 
-int main() {
-  children.assign(10, {});
-  children[0] = {1, 7};
-  children[1] = {2, 3, 6};
-  children[3] = {4, 5};
-  children[7] = {8, 9};
+    void buildAncest(int x){
+        queue<int> q;
+        q.push(x);
+        ready[x] = true;
+        ancestros[x][0] = x;
+        depth[x] = 1;
+        while(!q.empty()){
+            int v = q.front(); q.pop();
 
-  buildRMQ();
-  for (int i = 0; i < 2*10-1; i++) printf("%d ", H[i]);
-  printf("\n");
-  for (int i = 0; i < 2*10-1; i++) printf("%d ", E[i]);
-  printf("\n");
-  for (int i = 0; i < 2*10-1; i++) printf("%d ", L[i]);
-  printf("\n");
+            for(int u : adj[v]){
+                if(ready[u]){
+                    continue;
+                }
+                ancestros[u][0] = u;
+                depth[u] = depth[v] + 1;
+                ancest(u, v, 1);
+                q.push(u);
+                ready[u] = true;
+            }
+        }
+    }
 
-  return 0;
+    int lowbit(int x){
+        return (-x) & x;
+    }
+
+    int ancestK(int v, int k){
+        if(k == 0){
+            return v?v:-1;
+        }
+        int x = lowbit(k);
+        int p = 32 - __builtin_clz(x);
+
+        return ancestK(ancestros[v][p], k - x);
+    }
+
+    int lca(int a, int b){
+        if(depth[a] > depth[b]){
+            swap(a, b);
+        }
+
+        b = ancestK(b, depth[b] - depth[a]);
+
+        int in = 0, fin = V, med;
+
+        int x, y;
+        while(in < fin){
+            med = (in + fin) / 2;
+
+            x = ancestK(a, med); y = ancestK(b, med);
+
+            if(x == y){
+                fin = med;
+            }
+            else{
+                in = med + 1;
+            }
+        }
+
+        return ancestK(a, in);
+    }
+
+};
+
+int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+
+    int n, m;
+    cin >> n >> m;
+
+    Grafo g;
+    g.init(n);
+    //Indexado desde 1
+    for(int k = 2; k <= n; k++){
+        int a, b;
+        cin >> a >> b;
+        g.ae(a, b);
+        g.ae(b, a);
+    }
+
+    g.buildAncest(1);
+
+    while(m--){
+        int a, b;
+        cin >> a >> b;
+        int anc = g.lca(a, b);
+        cout << anc << "\n";
+    }
+
+    return 0;
 }
