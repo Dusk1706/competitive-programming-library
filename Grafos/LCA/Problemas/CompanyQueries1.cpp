@@ -1,6 +1,7 @@
-//https://cses.fi/problemset/task/1687/
+// https://cses.fi/problemset/task/1687/
 #include <bits/stdc++.h>
 using namespace std;
+#define LOG 20
 typedef vector<int> vi;
 
 struct Grafo{
@@ -12,7 +13,7 @@ struct Grafo{
     void init(int _V){
         V = _V;
         adj.assign(V, vi());
-        ancestros.assign(V, vi(32, 0));
+        ancestros.assign(V, vi(LOG, 0));
         depth.assign(V, 0);
         ready.assign(V, false);
     }
@@ -57,6 +58,7 @@ struct Grafo{
         if(k == 0){
             return v?v:-1;
         }
+
         int x = lowbit(k);
         int p = 32 - __builtin_clz(x);
 
@@ -70,23 +72,18 @@ struct Grafo{
 
         b = ancestK(b, depth[b] - depth[a]);
 
-        int in = 0, fin = V, med;
+        if(a == b){
+            return a;
+        }
 
-        int x, y;
-        while(in < fin){
-            med = (in + fin) / 2;
-
-            x = ancestK(a, med); y = ancestK(b, med);
-
-            if(x == y){
-                fin = med;
-            }
-            else{
-                in = med + 1;
+        for(int k = LOG - 1; k >= 0; k--){
+            if(ancestros[a][k] != ancestros[b][k]){
+                a = ancestros[a][k];
+                b = ancestros[b][k];
             }
         }
 
-        return ancestK(a, in);
+        return ancestros[a][1];
     }
 
 };
@@ -105,7 +102,6 @@ int main(){
         int a;
         cin >> a;
         g.ae(a, i);
-        g.ae(i, a);
     }
 
     g.buildAncest(1);
