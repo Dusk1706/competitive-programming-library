@@ -8,10 +8,11 @@ using namespace std;
 const int MAXN=1000 + 5;
 
 int dp[MAXN][MAXN];
+string s, t;
+int n, m;
 
-int LongestCommonSubsequence(string &s, string &t){
+int LongestCommonSubsequence(){
   memset(dp, 0, sizeof(dp));
-  int n = s.size(), m = t.size();
   
   for(int i=1; i<=n; i++){
     for(int j=1; j<=m; j++){
@@ -25,13 +26,31 @@ int LongestCommonSubsequence(string &s, string &t){
   return dp[n][m];
 }
 
+string pathLCS(){
+  string ans="";
+	int i=n,j=m;
+	while(i!=0 && j!=0){
+		if(dp[i-1][j]==dp[i][j]){
+			i--;
+		}else if(dp[i][j-1]==dp[i][j]){
+			j--;
+		}else{
+			ans=s[i-1]+ans;
+			i--;
+			j--;
+		}
+	}
+  return ans;
+}
+
 int main(){ _
-  string s, t;
+  
   while(cin>>s && s!="#"){
     cin>>t;
+    n = s.size(), m = t.size();
     
-    int lcs = LongestCommonSubsequence(s,t);
-    cout<< lcs <<ENDL;
+    cout<< LongestCommonSubsequence() <<ENDL;
+    cout<< pathLCS() << ENDL;
   }
 
 
